@@ -11,7 +11,9 @@ test('Click on the Home checkbox', async ({ page }) => {
   await checkbox.checkHome();
 
   // Assert checkbox is checked
-  expect(await checkbox.isHomeChecked()).toBe(true);
+  
+ 
+  await expect(checkbox.homeCheckbox).toHaveAttribute('aria-checked', 'true');
 
   // Assert result contains the expected text
   const resultText = await checkbox.getResultText();

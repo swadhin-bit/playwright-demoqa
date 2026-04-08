@@ -5,17 +5,25 @@ export default defineConfig({
   testDir: './tests',
 
   use: {
-    headless: false,               // visible browser → helps learning
-    screenshot: 'only-on-failure', // saves screenshots only when tests fail
-    video: 'retain-on-failure',    // debugging failures
+    headless: false,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
   },
 
-  reporter: [['html']],             // simple report → easy to open
+  reporter: [['html']],
 
   timeout: 30000,
   expect: { timeout: 5000 },
 
-  fullyParallel: false,             // keep simple for a fresher
+  fullyParallel: false,
+
+  // 🔥 ADD THIS
+  projects: [
+    {
+      name: 'chromium',
+      use: { browserName: 'chromium' },
+    }
+  ],
 });
