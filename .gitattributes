@@ -1,0 +1,14 @@
+# Auto detect text files and normalize line endings
+* text=auto
+
+# Force LF for JS/TS files (important for CI)
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+
+# Binary files (no conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
