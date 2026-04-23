@@ -5,7 +5,7 @@ import { UploadDownloadPage } from "../pages/UploadDownloadPage.js";
 
 test('Upload and Download files', async ({ page }) => {
   const ud = new UploadDownloadPage(page);
-  await page.goto('/upload-download');
+  await page.goto('/upload-download', { timeout: 60000 }); // cleaner if baseURL is set
 
   const downloadPath = path.join(process.cwd(), 'downloadedFile.png');
 

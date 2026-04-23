@@ -5,7 +5,7 @@ test('Click on the Home checkbox', async ({ page }) => {
 
   const checkbox = new CheckBox(page);
 
-  await checkbox.navigate("/checkbox");
+  await checkbox.navigate("/checkbox", { timeout: 60000 }); // cleaner if baseURL is set
 
   // Click the checkbox
   await checkbox.checkHome();

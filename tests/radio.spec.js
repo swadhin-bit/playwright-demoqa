@@ -4,7 +4,7 @@ import { RadioButton } from "../pages/RadioButton.js";
 test('check radiobutton', async ({ page }) => {
   const rd = new RadioButton(page);
 
-  await rd.navigate("/radio-button");
+  await rd.navigate("/radio-button", { timeout: 60000 }); // cleaner if baseURL is set
 
   // Visibility
   await rd.waitForVisibility(rd.yesRadioLabel);

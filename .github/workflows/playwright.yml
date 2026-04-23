@@ -10,6 +10,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:   # ✅ ADD THIS
+      BASE_URL: https://demoqa.com
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -23,7 +26,7 @@ jobs:
       run: npm ci
 
     - name: Install Playwright Browsers
-      run: npx playwright install chromium --with-deps
+      run: npx playwright install --with-deps
 
     - name: Run tests
       run: npx playwright test

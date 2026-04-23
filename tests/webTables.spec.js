@@ -4,7 +4,7 @@ import { WebTablesPage } from "../pages/webTablesPage.js";
 test("Add, Search, Update and Delete Web Table Record", async ({ page }) => {
 
   const webTable = new WebTablesPage(page);
-  await webTable.navigate("https://demoqa.com/webtables");
+  await webTable.navigate("/webtables", { timeout: 60000 }); // cleaner if baseURL is set
 
   // 1️⃣ Add record
   await webTable.addRecord("Swadhin", "Samal", "test@mail.com", "25", "35000", "QA");

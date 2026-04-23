@@ -12,11 +12,15 @@ export class BasePage {
     //await this.page.goto(url, options); // FIXED (no config import)
   //}
 
-  async navigate(url, options = {}) {
-  await this.page.goto(url, {
-    waitUntil: 'domcontentloaded', //
-    ...options
-  });
+  //async navigate(url, options = {}) {
+  //await this.page.goto(url, {
+    //waitUntil: 'domcontentloaded', //
+    //...options
+  //});
+//}
+
+async navigate(url, options = {}) {
+  await this.page.goto(url, { waitUntil: 'domcontentloaded',timeout: 60000, ...options });
 }
 
   async goBack() {
