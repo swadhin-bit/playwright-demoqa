@@ -1,5 +1,6 @@
 // pages/AlertsPage.js
 import { BasePage } from "./BasePage.js";
+import { expect } from "@playwright/test";
 
 export class AlertsPage extends BasePage {
 
@@ -31,5 +32,10 @@ export class AlertsPage extends BasePage {
       await dialog.accept(text);
     });
     await this.promptButton.click();
+  }
+
+  async verifyPromptResult(text) {
+    await expect(this.page.locator("#promptResult"))
+      .toContainText(text);
   }
 }

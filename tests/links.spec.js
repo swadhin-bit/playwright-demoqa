@@ -4,7 +4,7 @@ import { Links } from '../pages/Links';
 test.describe('DemoQA Links Automation', () => {
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://demoqa.com/links');
+    await page.goto('/links');
   });
 
   test('Verify Home Link opens new tab', async ({ page, context }) => {

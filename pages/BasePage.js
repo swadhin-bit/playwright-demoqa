@@ -8,9 +8,16 @@ export class BasePage {
   // ----------------------
   // Navigation
   // ----------------------
+  //async navigate(url, options = {}) {
+    //await this.page.goto(url, options); // FIXED (no config import)
+  //}
+
   async navigate(url, options = {}) {
-    await this.page.goto(url, options);
-  }
+  await this.page.goto(url, {
+    waitUntil: 'domcontentloaded', //
+    ...options
+  });
+}
 
   async goBack() {
     await this.page.goBack();
@@ -40,7 +47,7 @@ export class BasePage {
   }
 
   async type(locator, text, options = {}) {
-    await locator.fill(text, options);
+    await locator.fill(text); // removed unnecessary options
   }
 
   async clear(locator) {
@@ -166,7 +173,7 @@ export class BasePage {
   // Frames
   // ----------------------
   switchToFrame(locator) {
-    return locator; // should be frameLocator in page class
+    return this.page.frameLocator(locator); // FIXED
   }
 
   // ----------------------

@@ -5,8 +5,8 @@ test.describe("DemoQA Buttons Automation", () => {
   let buttonPage;
 
   test.beforeEach(async ({ page }) => {
-    buttonPage = new Button(page);
-    await buttonPage.open();
+   buttonPage = new Button(page);
+   await buttonPage.open();
   });
 
   test("Double Click Button", async () => {

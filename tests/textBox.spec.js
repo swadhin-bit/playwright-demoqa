@@ -5,7 +5,7 @@ test("Fill Text Box Form", async ({ page }) => {
 
   const textBox = new TextBoxPage(page);
 
-  await textBox.navigate("https://demoqa.com/text-box");
+  await textBox.navigate("/text-box");
 
   await textBox.fillForm(
     "Swadhin Samal",

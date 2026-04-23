@@ -5,7 +5,7 @@ import { BrokenLinks } from "../pages/BrokenLinks";
 test('Check broken link status', async ({ page }) => {
     const brokenPage = new BrokenLinks(page);
 
-    await brokenPage.navigate('https://demoqa.com/broken');
+    await brokenPage.navigate('/broken');
 
     const status = await brokenPage.checkBrokenLinkStatus();
     console.log(`Broken link status: ${status}`);

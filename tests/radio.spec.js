@@ -4,7 +4,7 @@ import { RadioButton } from "../pages/RadioButton.js";
 test('check radiobutton', async ({ page }) => {
   const rd = new RadioButton(page);
 
-  await rd.navigate("https://demoqa.com/radio-button");
+  await rd.navigate("/radio-button");
 
   // Visibility
   await rd.waitForVisibility(rd.yesRadioLabel);

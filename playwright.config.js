@@ -1,29 +1,75 @@
 // @ts-check
 import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+
+// Load environment variables
+/*dotenv.config({
+  path: `.env.${process.env.ENV || 'dev'}`
+});*/
+
+/*dotenv.config({
+  path: `.env.${process.env.ENV || 'qa'}`
+});*/
+
+const ENV = process.env.ENV || 'qa';
+
+dotenv.config({
+  path: `.env.${ENV}`
+});
 
 export default defineConfig({
   testDir: './tests',
 
-  use: {
-    headless: true,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    viewport: { width: 1280, height: 720 },
-    ignoreHTTPSErrors: true,
+  /* Global timeouts */
+  timeout: 30000,
+  expect: {
+    timeout: 5000,
   },
 
-  reporter: [['html']],
+  /* Execution settings */
+  fullyParallel: true,
+  retries: process.env.CI ? 4 : 0,
+  workers: process.env.CI ? 2 : undefined,
 
-  timeout: 30000,
-  expect: { timeout: 5000 },
+  /* Reporters */
+  reporter: [
+    ['html'],
+    ['list']
+  ],
 
-  fullyParallel: false,
+  /* Shared settings */
+  use: {
+    baseURL: process.env.BASE_URL || 'https://demoqa.com',
+    //baseURL: process.env.BASE_URL,
+    //storageState: 'auth.json',
+    headless: true,
 
-  // 🔥 ADD THIS
+    viewport: { width: 1280, height: 720 },
+
+    ignoreHTTPSErrors: true,
+
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'on-first-retry',
+    globalSetup: './global-setup.js',
+  },
+
+  /* Browser projects */
   projects: [
     {
       name: 'chromium',
       use: { browserName: 'chromium' },
-    }
+    },
+    {
+      name: 'firefox',
+      use: { browserName: 'firefox' },
+    },
+    {
+      name: 'webkit',
+      use: { browserName: 'webkit' },
+    },
   ],
+
+  /* Optional: Folder for test artifacts */
+  outputDir: 'test-results/',
 });

@@ -5,7 +5,7 @@ import { UploadDownloadPage } from "../pages/UploadDownloadPage.js";
 
 test('Upload and Download files', async ({ page }) => {
   const ud = new UploadDownloadPage(page);
-  await page.goto('https://demoqa.com/upload-download');
+  await page.goto('/upload-download');
 
   const downloadPath = path.join(process.cwd(), 'downloadedFile.png');
 

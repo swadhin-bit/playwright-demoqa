@@ -5,7 +5,7 @@ test('Click on the Home checkbox', async ({ page }) => {
 
   const checkbox = new CheckBox(page);
 
-  await checkbox.navigate("https://demoqa.com/checkbox");
+  await checkbox.navigate("/checkbox");
 
   // Click the checkbox
   await checkbox.checkHome();
