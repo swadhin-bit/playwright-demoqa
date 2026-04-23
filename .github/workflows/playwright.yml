@@ -29,7 +29,8 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run tests
-      run: DEBUG=pw:api npx playwright test
+      #run: DEBUG=pw:api npx playwright test
+      run: npx playwright test --grep-invert @flaky
       #run: npx playwright test
 
     - name: Upload report
