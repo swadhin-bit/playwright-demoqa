@@ -28,7 +28,7 @@ export default defineConfig({
 
   /* Execution settings */
   fullyParallel: true,
-  retries: process.env.CI ? 4 : 0,
+  retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
 
   /* Reporters */
@@ -40,6 +40,8 @@ export default defineConfig({
   /* Shared settings */
   use: {
     baseURL: process.env.BASE_URL || 'https://demoqa.com',
+    actionTimeout: 15000,
+  navigationTimeout: 60000,
     //baseURL: process.env.BASE_URL,
     //storageState: 'auth.json',
     headless: true,
