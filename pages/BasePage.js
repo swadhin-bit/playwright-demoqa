@@ -19,12 +19,16 @@ export class BasePage {
   //});
 //}
 
-async navigate(url, options = {}) {
+/*async navigate(url, options = {}) {
   await this.page.goto(url, {
     waitUntil: 'domcontentloaded',
     timeout: 60000,
     ...options
   });
+}*/
+
+async navigate(url, options = {}) {
+  await this.page.goto(url, { waitUntil: 'domcontentloaded', ...options });
 }
 
 async removeAds() {

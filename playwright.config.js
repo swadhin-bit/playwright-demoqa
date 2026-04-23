@@ -40,8 +40,8 @@ export default defineConfig({
   /* Shared settings */
   use: {
     baseURL: process.env.BASE_URL || "https://demoqa.com",
-  navigationTimeout: 60000,
-    actionTimeout: 15000,
+  navigationTimeout: 30000,
+    actionTimeout: 10000,
 
     //baseURL: process.env.BASE_URL,
     //storageState: 'auth.json',
