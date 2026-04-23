@@ -28,7 +28,7 @@ export class BasePage {
 }*/
 
 async navigate(url, options = {}) {
-  await this.page.goto(url, { waitUntil: 'domcontentloaded', ...options });
+  await this.page.goto(url, { waitUntil: 'domcontentloaded',timeout: 30000, ...options });
 }
 
 async removeAds() {
