@@ -8,7 +8,7 @@ baseTest.skip("Handle all types of Alerts", async ({ page }) => {
 
   const alerts = new AlertsPage(page);
 
-  await page.goto("/alerts", { timeout: 60000 });
+  await page.goto("/alerts", { timeout: 30000 });
   await alerts.removeAds(); // cleaner if baseURL is set
   //await page.goto(config.baseURL + "/alerts");
   

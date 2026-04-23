@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
-import { CheckBox } from "../pages/checkBox";
+import { CheckBox } from "../pages/CheckBox";
 import { BasePage } from "../pages/BasePage";
 
 test('Click on the Home checkbox', async ({ page }) => {
 
   const checkbox = new CheckBox(page);
 
-  await checkbox.navigate("/checkbox", { timeout: 60000 }); // cleaner if baseURL is set
+  await checkbox.navigate("/checkbox", { timeout: 30000 }); // cleaner if baseURL is set
   await checkbox.removeAds(); // cleaner if baseURL is set
 
   // Click the checkbox
