@@ -21,6 +21,7 @@ export class Button extends BasePage {
 
     async open(url = "https://demoqa.com/buttons") {
         await this.navigate(url);
+        await this.removeAds();
     }
 
     async doubleClickButton() {

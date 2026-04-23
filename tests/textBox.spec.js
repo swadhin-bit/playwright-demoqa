@@ -6,6 +6,7 @@ test("Fill Text Box Form", async ({ page }) => {
   const textBox = new TextBoxPage(page);
 
   await textBox.navigate("/text-box", { timeout: 60000 }); // cleaner if baseURL is set
+  await textBox.removeAds(); // cleaner if baseURL is set
 
   await textBox.fillForm(
     "Swadhin Samal",

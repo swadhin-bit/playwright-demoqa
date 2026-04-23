@@ -27,6 +27,12 @@ async navigate(url, options = {}) {
   });
 }
 
+async removeAds() {
+  await this.page.evaluate(() => {
+    document.querySelectorAll('iframe, .ads, [id*="google_ads"], [class*="modal"]').forEach(el => el.remove());
+  });
+}
+
   async goBack() {
     await this.page.goBack();
   }

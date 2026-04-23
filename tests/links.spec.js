@@ -1,10 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { Links } from '../pages/Links';
+import { BasePage } from '../pages/BasePage';
 
 test.describe('DemoQA Links Automation', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/links', { timeout: 60000 }); // cleaner if baseURL is set
+    await page.waitForLoadState();
+    const basePage = new BasePage(page);
+    await basePage.removeAds();
   });
 
   test('Verify Home Link opens new tab', async ({ page, context }) => {

@@ -9,6 +9,7 @@ baseTest.skip("Handle all types of Alerts", async ({ page }) => {
   const alerts = new AlertsPage(page);
 
   await page.goto("/alerts", { timeout: 60000 });
+  await alerts.removeAds(); // cleaner if baseURL is set
   //await page.goto(config.baseURL + "/alerts");
   
   await alerts.handleSimpleAlert();
@@ -22,6 +23,7 @@ test.skip('Handle all types of Alerts 2', async ({ appPage }) => {
   const alerts = new AlertsPage(appPage);
 
   await appPage.goto('/alerts', { timeout: 60000 }); // cleaner if baseURL is set
+  await appPage.removeAds();
 
   await alerts.handleSimpleAlert();
   await alerts.handleConfirmAlert();

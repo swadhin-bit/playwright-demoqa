@@ -1,5 +1,6 @@
 import { test as base } from '@playwright/test';
 import { AlertsPage } from '../pages/AlertsPage';
+import { BasePage } from '../pages/BasePage';
 
 export const test = base.extend({
   appPage: async ({ page }, use) => {
@@ -49,6 +50,7 @@ export const test = base.extend({
     const alerts = new AlertsPage(appPage);
 
     await appPage.goto('/alerts'); // optional but recommended
+    await alerts.removeAds(); // cleaner if baseURL is set
 
     await use(alerts);
   }
