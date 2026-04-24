@@ -5,7 +5,7 @@ import { BasePage } from '../pages/BasePage';
 test.describe('DemoQA Links Automation', () => {
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('/links', { timeout: 30000 }); // cleaner if baseURL is set
+    await page.goto('/links'); // cleaner if baseURL is set
     await page.waitForLoadState();
     const basePage = new BasePage(page);
     await basePage.removeAds();

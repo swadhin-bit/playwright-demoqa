@@ -4,7 +4,7 @@ import { WebTablesPage } from "../pages/webTablesPage.js";
 test("Add, Search, Update and Delete Web Table Record", async ({ page }) => {
 
   const webTable = new WebTablesPage(page);
-  await webTable.navigate("/webtables", { timeout: 30000 }); // cleaner if baseURL is set
+  await webTable.navigate("/webtables", { timeout: 10000 }); // cleaner if baseURL is set
   await webTable.removeAds(); // cleaner if baseURL is set
 
   // 1️⃣ Add record
