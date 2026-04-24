@@ -11,7 +11,7 @@ export default defineConfig({
   testDir: './tests',
 
   //globalSetup: './global-setup.js',
-  globalSetup: './fixtures/global-setup.js',
+  //globalSetup: './fixtures/global-setup.js',
 
   timeout: 30000,
   expect: {
