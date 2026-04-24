@@ -10,8 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:   # ✅ ADD THIS
+    env:
       BASE_URL: https://demoqa.com
+      ENV: qa
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
     - name: Checkout code
@@ -20,20 +22,18 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
 
     - name: Install dependencies
       run: npm ci
 
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install chromium --with-deps
 
-    - name: Run tests
-      #run: DEBUG=pw:api npx playwright test
+    - name: Run Playwright Tests
       run: npx playwright test --grep-invert @flaky
-      #run: npx playwright test
 
-    - name: Upload report
+    - name: Upload Playwright Report
       if: always()
       uses: actions/upload-artifact@v4
       with:
