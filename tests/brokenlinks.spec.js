@@ -5,8 +5,8 @@ import { BrokenLinks } from "../pages/BrokenLinks";
 test('Check broken link status', async ({ page }) => {
     const brokenPage = new BrokenLinks(page);
 
-    await brokenPage.navigate('/broken', { timeout: 30000 });
-    await brokenPage.removeAds();  // cleaner if baseURL is set
+    await brokenPage.navigate('/broken');
+    //await brokenPage.removeAds();  // cleaner if baseURL is set
 
     const status = await brokenPage.checkBrokenLinkStatus();
     console.log(`Broken link status: ${status}`);

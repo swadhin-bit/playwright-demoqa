@@ -31,11 +31,11 @@ async navigate(url, options = {}) {
   await this.page.goto(url, { waitUntil: 'domcontentloaded',timeout: 30000, ...options });
 }
 
-async removeAds() {
+/*async removeAds() {
   await this.page.evaluate(() => {
     document.querySelectorAll('iframe, .ads, [id*="google_ads"], [class*="modal"]').forEach(el => el.remove());
   });
-}
+}*/
 
   async goBack() {
     await this.page.goBack();
