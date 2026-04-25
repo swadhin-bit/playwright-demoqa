@@ -25,7 +25,7 @@ export const test = base.extend({
 });
 
     // Navigate
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('/');
 
     // Avoid networkidle for demoqa (can hang)
     // await page.waitForLoadState('networkidle');
