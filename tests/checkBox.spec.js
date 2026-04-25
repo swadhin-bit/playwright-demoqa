@@ -1,24 +1,20 @@
-import { test, expect } from "@playwright/test";
-import { CheckBox } from "../pages/CheckBox";
-import { BasePage } from "../pages/BasePage";
 
-test('Click on the Home checkbox', async ({ page }) => {
+import {test, expect} from "../fixtures/testBase";
 
-  const checkbox = new CheckBox(page);
+test.beforeEach(async ({ page }) => {
+  await page.goto('/checkbox');
+});
 
-  await checkbox.navigate("/checkbox"); // cleaner if baseURL is set
-  //await checkbox.removeAds(); // cleaner if baseURL is set
-
-  // Click the checkbox
-  await checkbox.checkHome();
-
-  // Assert checkbox is checked
-  
+test('Check Home checkbox and verify result', async ({ checkBoxesPage }) => {
  
-  await expect(checkbox.homeCheckbox).toHaveAttribute('aria-checked', 'true');
+  await checkBoxesPage.checkHome();
+   
+  await expect(checkBoxesPage.homeCheckbox).toHaveAttribute('aria-checked', 'true');
 
   // Assert result contains the expected text
-  const resultText = await checkbox.getResultText();
+  const resultText = await checkBoxesPage.getResultText();
   expect(resultText).toContain('home');
   expect(resultText).toContain('desktop');
+
 });
+

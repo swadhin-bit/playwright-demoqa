@@ -7,33 +7,37 @@ export class AlertsPage extends BasePage {
   constructor(page) {
     super(page);
 
-    // Use LOCATORS – reliable, recommended by Playwright
     this.alertButton = page.locator('#alertButton');
     this.confirmButton = page.locator('#confirmButton');
-    this.promptButton = page.locator('#promtButton');
+    this.promptButton = page.locator('#promtButton'); // correct as per DOM
   }
 
   async handleSimpleAlert() {
-    this.page.once("dialog", async dialog => {
-      await dialog.accept();
-    });
-    await this.alertButton.click();
-  }
+  this.page.once('dialog', async dialog => {
+    console.log(dialog.message());
+    await dialog.accept();
+  });
 
-  async handleConfirmAlert() {
-    this.page.once("dialog", async dialog => {
-      await dialog.dismiss();
-    });
-    await this.confirmButton.click();
-  }
+  await this.alertButton.click();
+}
 
-  async handlePromptAlert(text) {
-    this.page.once("dialog", async dialog => {
-      await dialog.accept(text);
-    });
-    await this.promptButton.click();
-  }
+async handleConfirmAlert() {
+  this.page.once('dialog', async dialog => {
+    console.log(dialog.message());
+    await dialog.dismiss();
+  });
 
+  await this.confirmButton.click();
+}
+
+async handlePromptAlert(text) {
+  this.page.once('dialog', async dialog => {
+    console.log(dialog.message());
+    await dialog.accept(text);
+  });
+
+  await this.promptButton.click();
+}
   async verifyPromptResult(text) {
     await expect(this.page.locator("#promptResult"))
       .toContainText(text);

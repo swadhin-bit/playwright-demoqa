@@ -1,24 +1,27 @@
-import { test, expect } from "@playwright/test";
-import { RadioButton } from "../pages/RadioButton.js";
+import { test, expect } from "../fixtures/testBase";
 
-test('check radiobutton', async ({ page }) => {
-  const rd = new RadioButton(page);
 
-  await rd.navigate("/radio-button"); // cleaner if baseURL is set
-  //await rd.removeAds(); // cleaner if baseURL is set
+test.beforeEach(async ({ page }) => {
+  await page.goto('/radio-button');
+});
+
+
+test('check radiobutton', async ({ radioButtonsPage }) => {
 
   // Visibility
-  await rd.waitForVisibility(rd.yesRadioLabel);
+  await radioButtonsPage.waitForVisibility(radioButtonsPage.yesRadioLabel);
 
   // Disabled check
-  await expect(rd.noRadioInput).toBeDisabled();
+  await expect(radioButtonsPage.noRadioInput).toBeDisabled();
 
   // Select Yes
-  await rd.selectYes();
+  await radioButtonsPage.selectYes();
 
   // Assert Yes is checked
-  await expect(rd.yesRadioInput).toBeChecked();
+  await expect(radioButtonsPage.yesRadioInput).toBeChecked();
 
   // Assert output
-  await rd.verifySelected("Yes");
+  await radioButtonsPage.verifySelected("Yes");
+
 });
+

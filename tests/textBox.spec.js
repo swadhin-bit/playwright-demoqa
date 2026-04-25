@@ -1,23 +1,22 @@
-import { test, expect } from "@playwright/test";
-import { TextBoxPage } from "../pages/TextBoxPage.js";
+import { test, expect } from "../fixtures/testBase";
 
-test("Fill Text Box Form", async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  await page.goto('/text-box');
+});
 
-  const textBox = new TextBoxPage(page);
+test("Fill Text Box Form", async ({ textBoxesPage }) => {
 
-  await textBox.navigate("/text-box"); // cleaner if baseURL is set
-  //await textBox.removeAds(); // cleaner if baseURL is set
-
-  await textBox.fillForm(
+  await textBoxesPage.fillForm(
     "Swadhin Samal",
     "swadhin@example.com",
     "Kendrapara",
     "Odisha"
   );
 
-  await textBox.verifyOutputContains("Swadhin Samal");
-  await textBox.verifyOutputContains("swadhin@example.com");
-  await textBox.verifyOutputContains("Kendrapara");
-  await textBox.verifyOutputContains("Odisha");
+  await textBoxesPage.verifyOutputContains("Swadhin Samal");
+  await textBoxesPage.verifyOutputContains("swadhin@example.com");
+  await textBoxesPage.verifyOutputContains("Kendrapara");
+  await textBoxesPage.verifyOutputContains("Odisha");
 
 });
+

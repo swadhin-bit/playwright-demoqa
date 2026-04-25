@@ -1,45 +1,57 @@
 import { test as base } from '@playwright/test';
 import { AlertsPage } from '../pages/AlertsPage';
-import { BasePage } from '../pages/BasePage';
+import { BrokenLinks } from '../pages/BrokenLinks';
+import { Button } from '../pages/Button';
+import { CheckBox } from '../pages/CheckBox';
+import { Links } from '../pages/Links';
+import { RadioButton } from '../pages/RadioButton';
+import { TextBoxPage } from '../pages/TextBoxPage';
+import { UploadDownloadPage } from '../pages/UploadDownloadPage';
+import { WebTablesPage } from '../pages/webTablesPage';
 
 export const test = base.extend({
-  appPage: async ({ page }, use) => {
 
-    // 🚫 No routing at all (pure mode)
-
-    await page.route('**/*', route => {
-  /*
-  const url = route.request().url();
-
-  if (
-    url.includes('doubleclick') ||
-    url.includes('googlesyndication') ||
-    url.includes('ads') ||
-    url.includes('analytics')
-  ) {
-    return route.abort();
-  }
-  */
-
-  return route.continue();
-});
-
-    // Navigate
+  page: async ({ page }, use) => {
     await page.goto('/');
-
-    // Avoid networkidle for demoqa (can hang)
-    // await page.waitForLoadState('networkidle');
-
     await use(page);
   },
 
-  alertsPage: async ({ appPage }, use) => {
-    const alerts = new AlertsPage(appPage);
+  alertsPage: async ({ page }, use) => {
+    await use(new AlertsPage(page));
+  },
 
-    await appPage.goto('/alerts', { waitUntil: 'domcontentloaded' });
+  brokenLinksPage: async ({ page }, use) => {
+    await use(new BrokenLinks(page));
+  },
 
-    await use(alerts);
+  buttonsPage: async ({ page }, use) => {
+    await use(new Button(page));
+  },
+
+  checkBoxesPage: async ({ page }, use) => {
+    await use(new CheckBox(page));
+  },
+
+  linksPage: async ({ page }, use) => {
+    await use(new Links(page));
+  },
+
+  radioButtonsPage: async ({ page }, use) => {
+    await use(new RadioButton(page));
+  },
+
+  textBoxesPage: async ({ page }, use) => {
+    await use(new TextBoxPage(page));
+  },
+
+  uploadDownloadPage: async ({ page }, use) => {
+    await use(new UploadDownloadPage(page));
+  },
+
+  webTablesPage: async ({ page }, use) => {
+    await use(new WebTablesPage(page));
   }
+
 });
 
 export const expect = test.expect;

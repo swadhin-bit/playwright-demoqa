@@ -1,14 +1,12 @@
-import{test, expect} from "@playwright/test";
+import{test, expect} from "../fixtures/testBase";
 
-import { BrokenLinks } from "../pages/BrokenLinks";
+test.beforeEach(async ({ page }) => {
+  await page.goto('/broken');
+});
 
-test('Check broken link status', async ({ page }) => {
-    const brokenPage = new BrokenLinks(page);
+test('Check broken link status', async ({ brokenLinksPage }) => {
 
-    await brokenPage.navigate('/broken');
-    //await brokenPage.removeAds();  // cleaner if baseURL is set
-
-    const status = await brokenPage.checkBrokenLinkStatus();
+    const status = await brokenLinksPage.checkBrokenLinkStatus();
     console.log(`Broken link status: ${status}`);
 
     expect(status).toBeGreaterThanOrEqual(400); // 400+ = broken

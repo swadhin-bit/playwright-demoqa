@@ -1,31 +1,33 @@
-import { test, expect } from "@playwright/test";
-import { WebTablesPage } from "../pages/webTablesPage.js";
+import { test, expect } from "../fixtures/testBase";
 
-test("Add, Search, Update and Delete Web Table Record", async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+  await page.goto('/webtables');
+});
 
-  const webTable = new WebTablesPage(page);
-  await webTable.navigate("/webtables"); // cleaner if baseURL is set
-  //await webTable.removeAds(); // cleaner if baseURL is set
 
-  // 1️⃣ Add record
-  await webTable.addRecord("Swadhin", "Samal", "test@mail.com", "25", "35000", "QA");
+test("Verify Web Table ", async ({ webTablesPage }) => {
+
+   // 1️⃣ Add record
+  await webTablesPage.addRecord("Swadhin", "Samal", "test@mail.com", "25", "35000", "QA");
 
   /*
   // 2️⃣ Search + verify
-  await webTable.searchRecord("Cierra");
-  await expect(webTable.searchBox).toHaveValue("Cierra");
-  await expect(webTable.tableBody).toHaveValue("Cierra");
-  await expect(webTable.tableBody).toHaveValue("Vega");
-  await expect(webTable.tableBody).toHaveValue("cierra@example.com");
+  await webTablesPage.searchRecord("Cierra");
+  await expect(webTablesPage.searchBox).toHaveValue("Cierra");
+  await expect(webTablesPage.tableBody).toHaveValue("Cierra");
+  await expect(webTablesPage.tableBody).toHaveValue("Vega");
+  await expect(webTablesPage.tableBody).toHaveValue("cierra@example.com");
 
   // 3️⃣ Update record
-  await webTable.updateRecordByEmail("cierra@example.com", "UpdatedName");
-  await webTable.verifyRecordExists("UpdatedName");
+  await webTablesPage.updateRecordByEmail("cierra@example.com", "UpdatedName");
+  await webTablesPage.verifyRecordExists("UpdatedName");
 
   // 4️⃣ Delete record
-  await webTable.deleteRecordByEmail("cierra@example.com");
+  await webTablesPage.deleteRecordByEmail("cierra@example.com");
 
   // Verify delete
-  const deletedRow = webTable.rows.filter({ hasText: "cierra@example.com" });
+  const deletedRow = webTablesPage.rows.filter({ hasText: "cierra@example.com" });
   await expect(deletedRow).toHaveCount(0);*/
+
 });
+
