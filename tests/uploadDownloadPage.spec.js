@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/testBase";
+import { test, expect } from "../fixtures/upload.fixture";
 import path from "path";
 import fs from "fs";
 

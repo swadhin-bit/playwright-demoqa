@@ -27,8 +27,14 @@ export class BasePage {
   });
 }*/
 
+/*
 async navigate(url, options = {}) {
-  await this.page.goto(url, { waitUntil: 'domcontentloaded', ...options });
+  await this.page.goto(url, { waitUntil: 'domcontentloaded',...options });
+}
+  */
+
+async goto(url) {
+  await this.page.goto(url);
 }
 
 /*async removeAds() {

@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/testBase";
+import { test, expect } from "../fixtures/elements.fixture";
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/webtables');

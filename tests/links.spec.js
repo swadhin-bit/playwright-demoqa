@@ -1,7 +1,23 @@
-import { test, expect } from "../fixtures/testBase";
+import { test, expect } from "../fixtures/elements.fixture";
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/links');
+  await expect(page.locator('#simpleLink')).toBeVisible();
+  await expect(page.locator('#simpleLink')).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Created' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Created' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'No Content' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'No Content' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Moved' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Moved' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Bad Request' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Bad Request' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Unauthorized' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Unauthorized' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Forbidden' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Forbidden' })).toBeEnabled();
+  await expect(page.getByRole('link', { name: 'Not Found' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Not Found' })).toBeEnabled();
 });
 
 test('DemoQA Links Automation', async ({ linksPage
