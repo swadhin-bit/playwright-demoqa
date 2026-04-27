@@ -2,6 +2,8 @@ import { test, expect } from "../fixtures/elements.fixture";
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/webtables');
+  await expect(page.locator('#addNewRecordButton')).toBeVisible();
+  //await expect(page.locator('#addNewRecordButton')).toBeEnabled();
 });
 
 
