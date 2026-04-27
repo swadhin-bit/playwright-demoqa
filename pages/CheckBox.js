@@ -4,22 +4,19 @@ export class CheckBox extends BasePage {
   constructor(page) {
     super(page);
 
-  
     this.homeCheckbox = page.locator('[aria-label="Select Home"]');
-    this.homeInput = page.locator('#tree-node-home');
     this.result = page.locator('#result');
   }
 
   async checkHome() {
-  await this.homeCheckbox.waitFor({ state: 'visible' });
-  await this.homeCheckbox.click();
-}
-
-  async isHomeChecked() {
-    return await this.homeInput.isChecked();
+    await this.homeCheckbox.click();
   }
 
-  async getResultText() {
-    return await this.result.textContent();
+  async verifyHomeChecked() {
+    await expect(this.homeCheckbox).toHaveAttribute('aria-checked', 'true');
+  }
+
+  async verifyResult() {
+    await expect(this.result).toContainText('home');
   }
 }
